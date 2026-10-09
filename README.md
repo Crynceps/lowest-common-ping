@@ -108,15 +108,3 @@ Requires a JDK 11 to 21.
 
 `run` starts RuneLite in developer mode with the plugin loaded. To log in with a Jagex account, follow
 [Using Jagex Accounts](https://github.com/runelite/runelite/wiki/Using-Jagex-Accounts).
-
-### Test kit for friends without a development setup
-
-```powershell
-powershell -ExecutionPolicy Bypass -File test-kit\build-test-kit.ps1
-```
-
-This builds `build\test-kit\LowestCommonPing-test.zip`: the plugin plus a double-click starter that runs it with
-the RuneLite the tester already has installed (its bundled Java and its own RuneLite files, checked against
-RuneLite's published checksums, without developer mode), and a step-by-step `HOW-TO.txt`. The zip contains only
-this plugin's code, never RuneLite or the game client; share it only with people who know you, together with the
-SHA-256 the script prints. Windows only. Once the plugin is on the Plugin Hub, the kit is no longer needed.
