@@ -50,6 +50,7 @@ it off under *Display > Show overlay*.
 Hopping only happens when you double-click a world or use its right-click menu. On the login screen the world is
 selected directly. In game, the plugin opens the world switcher and hops the same way the core World Hopper plugin
 does. PvP, high risk and other special worlds are never listed, so you cannot hop to them from this plugin.
+The hop code is adapted from RuneLite's World Hopper plugin (BSD-2, see the notice in `WorldHopper.java`).
 
 ## How it measures
 
@@ -58,7 +59,7 @@ worlds and networks that block ICMP. It does not open any connections of its own
 
 Pinging every world every few seconds would be wasteful, so pings are spread over two lanes:
 
-- The **8 best worlds** for the party are pinged every 4 seconds, so their values stay accurate. A world stays in
+- The **8 best worlds** for the party are pinged every 5 seconds, so their values stay accurate. A world stays in
   this group while it ranks in the top 12.
 - **All other worlds** are pinged about every 3 minutes, which is enough to notice when another world becomes better.
 - If the ping rate is too low for both (for example 1 ping per second with every region selected, or on a network
@@ -66,8 +67,10 @@ Pinging every world every few seconds would be wasteful, so pings are spread ove
   value expires. They are then pinged about every 6 minutes, and the best worlds about every 30 seconds.
 - A world that does not answer is retried later and later (30 seconds, doubling up to 6 minutes).
 
-At most *Max pings per second* (default 4) pings are started per second. Pinging only runs while the side panel is
-open, or while another party member uses the plugin (you can turn the latter off).
+At most *Max pings per second* (default 3) pings are started per second while the side panel is open, and at most
+2 per second while it is closed. Pinging only runs while the side panel is open, or while another party member uses
+the plugin (you can turn the latter off). For comparison, the core World Hopper pings every world once at startup
+and then one world every 3 seconds.
 
 Use the *Worlds* settings (members/free, regions, skill total worlds) to limit which worlds are pinged and listed.
 PvP, high risk, Deadman, seasonal, beta, speedrunning, tournament and other special worlds are never included.
@@ -89,7 +92,7 @@ Sharing pings with your party reveals roughly where you are, since ping depends 
 members of your party receive them. Your in-game name is included so members can tell the columns apart.
 
 Turn off *Pinging > Share pings with party* to only watch: you still see the pings of members who share, and they
-only learn that you use the plugin.
+only see your name and that you use the plugin.
 
 ## Development
 
@@ -105,3 +108,15 @@ Requires a JDK 11 to 21.
 
 `run` starts RuneLite in developer mode with the plugin loaded. To log in with a Jagex account, follow
 [Using Jagex Accounts](https://github.com/runelite/runelite/wiki/Using-Jagex-Accounts).
+
+### Test kit for friends without a development setup
+
+```powershell
+powershell -ExecutionPolicy Bypass -File test-kit\build-test-kit.ps1
+```
+
+This builds `build\test-kit\LowestCommonPing-test.zip`: the plugin plus a double-click starter that runs it with
+the RuneLite the tester already has installed (its bundled Java and its own RuneLite files, checked against
+RuneLite's published checksums, without developer mode), and a step-by-step `HOW-TO.txt`. The zip contains only
+this plugin's code, never RuneLite or the game client; share it only with people who know you, together with the
+SHA-256 the script prints. Windows only. Once the plugin is on the Plugin Hub, the kit is no longer needed.

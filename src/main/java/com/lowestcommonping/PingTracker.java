@@ -27,7 +27,7 @@ import net.runelite.http.api.worlds.World;
  */
 final class PingTracker
 {
-	static final long FOCUS_INTERVAL_MS = 4_000;
+	static final long FOCUS_INTERVAL_MS = 5_000;
 	static final long SWEEP_INTERVAL_MS = 180_000;
 	static final long BASE_BACKOFF_MS = 30_000;
 	static final long MAX_BACKOFF_MS = 6 * 60_000;

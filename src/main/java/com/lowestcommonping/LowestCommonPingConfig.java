@@ -100,7 +100,7 @@ public interface LowestCommonPingConfig extends Config
 		keyName = "sharePings",
 		name = "Share pings with party",
 		description = "Send your world pings to your RuneLite party so members can find a world that suits everyone."
-			+ " When off, you still see the pings of members who share.",
+			+ " Pings reveal roughly which region you are in. When off, you still see the pings of members who share.",
 		position = 21,
 		section = pingingSection
 	)
@@ -124,14 +124,15 @@ public interface LowestCommonPingConfig extends Config
 	@ConfigItem(
 		keyName = "maxPingsPerSecond",
 		name = "Max pings per second",
-		description = "Upper limit on how many worlds are pinged per second",
+		description = "Upper limit on how many worlds are pinged per second while the side panel is open."
+			+ " While it is closed, at most 2 per second.",
 		position = 23,
 		section = pingingSection
 	)
-	@Range(min = 1, max = 5)
+	@Range(min = 1, max = 4)
 	default int maxPingsPerSecond()
 	{
-		return 4;
+		return 3;
 	}
 
 	@ConfigItem(

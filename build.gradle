@@ -42,6 +42,7 @@ tasks.register('run', JavaExec) {
 	args "--developer-mode", "--debug"
 }
 
+// Never share this jar: it bundles RuneLite and the Jagex game client. For testers, use test-kit\build-test-kit.ps1.
 tasks.register('shadowJar', Jar) {
 	dependsOn configurations.testRuntimeClasspath
 	manifest {

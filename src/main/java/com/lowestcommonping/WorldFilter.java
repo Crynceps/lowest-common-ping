@@ -35,6 +35,26 @@ final class WorldFilter
 		return new WorldFilter(config.membership(), config.regions(), config.skillTotalWorlds());
 	}
 
+	/**
+	 * @return true if the world has no special type, so the plugin may hop there
+	 */
+	static boolean isNormalWorld(World world)
+	{
+		Set<WorldType> types = world.getTypes();
+		if (types == null)
+		{
+			return true;
+		}
+		for (WorldType type : types)
+		{
+			if (type != WorldType.SKILL_TOTAL && !NORMAL_TYPES.contains(type))
+			{
+				return false;
+			}
+		}
+		return true;
+	}
+
 	boolean matches(World world)
 	{
 		if (world.getPlayers() < 0)

@@ -67,6 +67,10 @@ public class LowestCommonPingPlugin extends Plugin
 	 * immediately demote it to the slow lane.
 	 */
 	private static final int FOCUS_KEEP_RANK = 12;
+	/**
+	 * Ping rate limit while the side panel is closed, when only the overlay and the party use the values.
+	 */
+	private static final int BACKGROUND_PINGS_PER_SECOND = 2;
 	private static final int REPLY_DELAY_MS = 500;
 	private static final int REPLY_JITTER_MS = 2_000;
 	private static final String UNKNOWN_DISPLAY_NAME = "<unknown>";
@@ -155,7 +159,7 @@ public class LowestCommonPingPlugin extends Plugin
 			System::currentTimeMillis,
 			this::isPingingEnabled,
 			OSType.getOSType() == OSType.Windows ? 3 : 2);
-		pingService.start(scheduler, config.maxPingsPerSecond());
+		pingService.start(scheduler, pingRate());
 
 		// WorldService.getWorlds() can block while the world list is first fetched
 		scheduler.execute(this::loadWorlds);
@@ -258,10 +262,24 @@ public class LowestCommonPingPlugin extends Plugin
 	void setPanelActive(boolean active)
 	{
 		panelActive = active;
+		PingService service = pingService;
+		if (service != null)
+		{
+			service.setRate(pingRate());
+		}
 		if (active)
 		{
 			requestTick();
 		}
+	}
+
+	/**
+	 * @return the configured rate while the panel is open, a lower one while pinging in the background
+	 */
+	private int pingRate()
+	{
+		int configured = config.maxPingsPerSecond();
+		return panelActive ? configured : Math.min(configured, BACKGROUND_PINGS_PER_SECOND);
 	}
 
 	/**
@@ -618,7 +636,7 @@ public class LowestCommonPingPlugin extends Plugin
 			case "maxPingsPerSecond":
 				if (pingService != null)
 				{
-					pingService.setRate(config.maxPingsPerSecond());
+					pingService.setRate(pingRate());
 				}
 				break;
 			case "sharePings":

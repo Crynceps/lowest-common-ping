@@ -1,0 +1,107 @@
+LOWEST COMMON PING - TEST BUILD
+===============================
+
+Lowest Common Ping shows which world has the lowest ping for everyone in your RuneLite party.
+It is not on the Plugin Hub yet, so this kit runs it with the RuneLite you already have.
+
+Nothing gets installed. It does use your normal RuneLite settings, so things you change while
+testing (like switching on the Party plugin) stay that way in your normal RuneLite.
+
+BEFORE YOU START
+  - This test build has not been reviewed by RuneLite yet; that happens when it goes on the
+    Plugin Hub. Use it only with your own account on your own PC, at your own risk.
+  - Nobody, including whoever sent you this, will ever need your password or any file from
+    your .runelite folder (except client.log, if something goes wrong).
+  - Your pings show the party roughly which region you are in. To only watch, turn off
+    "Share pings with party" in the plugin's settings.
+
+You need: a Windows PC with RuneLite installed that you have started at least once
+(starting it from the Jagex Launcher counts). Close RuneLite before you start.
+
+
+1. EXTRACT THE ZIP
+------------------
+  a. Right-click the zip file > "Extract All..." > "Extract".
+     (With 7-Zip or WinRAR, use its "Extract to LowestCommonPing-test\" option.)
+     Double-clicking the zip only shows what is inside; the kit does not work from there.
+  b. In the folder that opens, open the "LowestCommonPing-test" folder.
+
+  Windows may warn you the first time you open each .bat file in this kit, because they
+  come from a download and are not signed:
+    - "Windows protected your PC": click "More info", then "Run anyway".
+    - "Open File - Security Warning" ("The publisher could not be verified"): click "Run".
+  To avoid these warnings: before extracting, right-click the zip > Properties > tick
+  "Unblock" at the bottom > OK.
+
+
+2. START IT
+-----------
+  a. Double-click "Start Lowest Common Ping".
+  b. A black window opens and fills with technical text, then RuneLite opens. Lines with
+     WARN or ERROR in that text are normal. Leave the black window open while you play,
+     but don't click inside it: on some PCs that pauses RuneLite until you press Esc.
+     Closing the black window closes RuneLite.
+
+
+3. JOIN THE PARTY (you do not need to log in for this)
+------------------------------------------------------
+  a. The sidebar is the column of small icons on the right edge of RuneLite (press Ctrl+F11
+     if you don't see it). Click the wrench at the top of it, type Party in the search box,
+     and click the switch next to the plugin called just "Party" (the first result) so it
+     turns on.
+  b. Click the Party icon (three white figures) that appears in the sidebar, click
+     "Join party", paste the passphrase you were sent (no spaces before or after it) and
+     click OK.
+
+  If you stay on the login screen for more than 30 minutes, RuneLite leaves the party by
+  itself. Click the Party icon, then "Join previous party" to get back in.
+
+
+4. OPEN LOWEST COMMON PING
+-------------------------
+  Click the Lowest Common Ping icon in the sidebar (green and orange signal bars) and keep
+  that panel open. Measuring every world takes about 2 minutes (longer on some networks);
+  "You measured ... of ... worlds" at the top shows how far it is.
+
+  Everyone in the party who also runs Lowest Common Ping gets a column. "You" is you; the
+  others show their in-game name once they log in ("Member" before that). The worlds that
+  suit everyone best are at the top.
+
+
+5. OPTIONAL: LOG IN TO THE GAME (to try hopping and the in-game overlay)
+-----------------------------------------------------------------------
+  - If you log in to RuneLite with a username/email and password: just log in.
+
+  - If you have a Jagex account (you start the game from the Jagex Launcher), RuneLite needs
+    a saved login token first. This uses RuneLite's official method for developers; it is
+    optional and at your own risk, and Jagex does not officially support it. You can test
+    everything except hopping and the overlay without it. To set it up:
+      a. Close RuneLite, including the one started by this kit.
+      b. Double-click "Jagex login - set up" and follow what it says
+         (paste one line into a RuneLite settings window, click Save).
+      c. Start RuneLite once through the Jagex Launcher as you normally do.
+         When the RuneLite login screen appears, close it; you don't need to log in.
+      d. Double-click "Start Lowest Common Ping" again. You can now log in without a password.
+      e. A restart leaves the party: click the Party icon, then "Join previous party".
+         The worlds are measured again, which takes another couple of minutes.
+
+    IMPORTANT: that token can log in to your account without a password, so never share the
+    file it creates (credentials.properties in your .runelite folder). Until you clean up
+    (step 6), every start through the Jagex Launcher saves a fresh token. If you think someone
+    else got that file, use "End sessions" in your account settings on runescape.com; that
+    makes the token useless.
+
+
+6. WHEN YOU ARE DONE
+--------------------
+  Close RuneLite. If you did the Jagex account steps, first double-click "Jagex login - clean up"
+  and follow what it says: it removes the setting and deletes the token. After that you can
+  delete the extracted folder.
+
+
+SOMETHING WRONG?
+----------------
+  Send a screenshot of the black window to whoever sent you this kit.
+  If RuneLite started but misbehaves, also send the file client.log from this folder
+  (paste the line into the File Explorer address bar and press Enter):
+      %USERPROFILE%\.runelite\logs

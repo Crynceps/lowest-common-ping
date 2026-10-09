@@ -72,6 +72,15 @@ public class WorldFilterTest
 	}
 
 	@Test
+	public void onlyNormalWorldsAreHopTargets()
+	{
+		assertTrue(WorldFilter.isNormalWorld(world(302, UK, EnumSet.of(WorldType.MEMBERS))));
+		assertTrue(WorldFilter.isNormalWorld(world(353, UK, EnumSet.of(WorldType.MEMBERS, WorldType.SKILL_TOTAL))));
+		assertFalse(WorldFilter.isNormalWorld(world(325, UK, EnumSet.of(WorldType.MEMBERS, WorldType.PVP))));
+		assertFalse(WorldFilter.isNormalWorld(world(365, UK, EnumSet.of(WorldType.MEMBERS, WorldType.HIGH_RISK))));
+	}
+
+	@Test
 	public void rejectsOfflineWorlds()
 	{
 		World offline = World.builder().id(302).address("oldschool2.runescape.com").activity("-").location(UK)
