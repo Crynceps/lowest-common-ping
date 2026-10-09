@@ -7,6 +7,12 @@ Every party member running the plugin pings the worlds from their own connection
 RuneLite party. The side panel lists the worlds sorted by the best ping for the whole group, with a column for each
 member, so a party spread across countries (say Europe and Australia) can see which world suits everyone.
 
+<img src="https://raw.githubusercontent.com/Crynceps/lowest-common-ping/main/docs/panel.png" width="350"
+alt="The side panel in a party of three: you in Europe and a member in Australia, ranked by the worst member's ping">
+
+*A party of three: you in Europe and a member in Australia (the third member doesn't use the plugin). US worlds
+suit both of you best, with world 545 at 189 ms for the slower member.*
+
 ## Usage
 
 1. Everyone installs **Lowest Common Ping**.
@@ -51,6 +57,32 @@ Hopping only happens when you double-click a world or use its right-click menu. 
 selected directly. In game, the plugin opens the world switcher and hops the same way the core World Hopper plugin
 does. PvP, high risk and other special worlds are never listed, so you cannot hop to them from this plugin.
 The hop code is adapted from RuneLite's World Hopper plugin (BSD-2, see the notice in `WorldHopper.java`).
+
+## Settings
+
+<img src="https://raw.githubusercontent.com/Crynceps/lowest-common-ping/main/docs/settings.png" width="242"
+alt="The plugin's settings">
+
+| Setting | Default | What it does |
+|---|---|---|
+| Rank worlds by | Worst member | *Worst member* ranks by the slowest member's ping, *Average* by the party's average. |
+| Averaging window | 30 s | Your ping to a world is the median of the pings measured within this time (10 to 120 s). |
+| **Worlds** | | |
+| World type | Members and free | Show members worlds, free worlds or both. |
+| Regions | All | Only show worlds in the selected regions. Select none to show all regions. |
+| Skill total worlds | Off | Include worlds that require a minimum total level. |
+| **Pinging** | | |
+| Share pings with party | On | Send your pings to your party. When off, you only watch. |
+| Ping while panel is closed | On | Keep measuring with the panel closed, but only while another party member uses the plugin. |
+| Max pings per second | 3 | Upper limit while the panel is open (1 to 4). With the panel closed, at most 2. |
+| **Display** | | |
+| Good ping | 80 ms | Pings up to this value are green. |
+| Bad ping | 150 ms | Pings above this value are red; values in between are orange. |
+| Show overlay | On | Show the best worlds for the party in game while another member shares pings. |
+| Overlay worlds | 3 | Number of worlds in the overlay (1 to 5). |
+| Double-click to hop | On | Hop to a world by double-clicking it in the panel. Right-click > *Hop to world* always works. |
+
+The screenshot shows *Max pings per second* raised to 4.
 
 ## How it measures
 
